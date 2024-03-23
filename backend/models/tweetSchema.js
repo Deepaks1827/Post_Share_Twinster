@@ -14,10 +14,7 @@ const tweetSchema = new mongoose.Schema({
         extended:true,
         ref:"User"
     },
-    bookmarks:{
-        type:Array,
-        default:[]
-    },
+    
 
 
 })
