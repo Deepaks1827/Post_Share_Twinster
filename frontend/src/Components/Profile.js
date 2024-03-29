@@ -1,9 +1,14 @@
 import React from 'react'
 import Avatar from 'react-avatar';
 import { IoIosArrowRoundBack } from "react-icons/io";
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import useGetProfile from '../hooks/useGetprofile';
 
 const Profile = () => {
+  const {user,Profile} = useSelector(store=>store.user);
+  
+  useGetProfile(user?._id);
   return (
     <div className='w-[50%] border-left border-right border-gray-200'>
        <div>
@@ -13,7 +18,7 @@ const Profile = () => {
             </Link>
             <div className='ml-2'>
                 <h1 className='font-bold text-lg'>
-                      Deepak Shukla
+                      {Profile?.name}
                 </h1>
                 <p className='text-gray-500 text-sm'>
                      18 posts
@@ -34,8 +39,8 @@ const Profile = () => {
             </button>
           </div>
           <div className='m-4'>
-            <h1 className='font-bold text-xl'> Deepak</h1>
-            <p> @deepakShukla00</p>
+            <h1 className='font-bold text-xl'>{Profile?.name}</h1>
+            <p>{`@${Profile?.username}`}</p>
           </div>
           <div className='m-4 text-sm'>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
