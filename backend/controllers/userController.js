@@ -9,14 +9,14 @@ export const Register = async (req, res) => {
     if (!name || !username || !email || !password) {
       return res.status(401).json({
         message: "All fields are required.",
-        success: false,
-      });
+        success: false
+      })
     }
-    const user = await User.findOne({ email });
+    const user = await User.findOne( {email} );
     if (user) {
       return res.status(401).json({
         message: "User already exists.",
-        success: false,
+        success: false
       });
     }
     const hashedPassword = await bcryptjs.hash(password, 16);
@@ -24,8 +24,12 @@ export const Register = async (req, res) => {
       name,
       username,
       email,
-      password: hashedPassword,
+      password: hashedPassword
     });
+    return res.status(201).json({
+      message:"account created successfully.",
+      success:true
+    })
   } catch (error) {
     console.log(error);
   }
@@ -64,6 +68,7 @@ export const Login = async (req, res) => {
       .cookie("token", token, { expiresIn: "1d", httpOnly: true })
       .json({
         message: `Welcome back ${user.name}`,
+        user,
         success: true,
       });
   } catch (error) {
