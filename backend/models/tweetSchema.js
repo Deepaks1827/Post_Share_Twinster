@@ -11,11 +11,16 @@ const tweetSchema = new mongoose.Schema({
     },
     userId:{
         type:mongoose.Schema.Types.ObjectId,
-        extended:true,
+        
         ref:"User"
     },
+    userDetails:{
+        type:Array,
+        default:[]
+    },
+},{timestamps:true});
     
 
 
-})
+
 export const Tweet = mongoose.model("Tweet",tweetSchema);

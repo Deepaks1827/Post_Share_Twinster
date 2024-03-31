@@ -8,10 +8,10 @@ import { useSelector } from 'react-redux'
 
 
 const Home = () => {
-  const {user,otherUsers} = useSelector(store=>store.user);
+  const {user,otherUsers} = useSelector(store =>store.user);
   useOtherUserProfile(user?._id);
  
-  return (
+  return ( 
     <div className='flex justify-between mx-auto w-[80%]'>
     
     <LeftSideBar/> 

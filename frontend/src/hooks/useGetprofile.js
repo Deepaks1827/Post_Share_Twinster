@@ -3,7 +3,7 @@ import { USER_API_END_POINT } from "../utils/Constant";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { getMyProfile } from "../redux/userSlice";
-const useGetProfile = async(id)=>{
+const useGetProfile = (id)=>{
    const dispatch = useDispatch();
     useEffect(()=>{
         const fetchMyProfile = async() => {
@@ -21,8 +21,8 @@ const useGetProfile = async(id)=>{
         fetchMyProfile();
        
 
-    },[])
+    },[id])
    
 
-}
+};
 export default useGetProfile;

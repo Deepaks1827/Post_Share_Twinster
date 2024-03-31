@@ -7,12 +7,15 @@ export const createTweet = async (req, res) => {
     if (!description || !id) {
       return res.status(401).json({
         message: "Fields are required.",
-        success: false,
-      });
-    }
+        success: false
+      })
+    };
+    const user = await User.findById(id).select("-password");
     await Tweet.create({
       description,
       userId: id,
+      userDetails:user
+
     });
     return res.status(201).json({
       message: "Tweet created successfully.",
@@ -42,7 +45,7 @@ export const likeOrDislike = async (req, res) => {
     if (tweet.like.includes(loggedInUserId)) {
       //dislike
       await Tweet.findByIdAndUpdate(tweetId, {
-        $pull: { like: loggedInUserId },
+        $pull: { like: loggedInUserId }
       });
       return res.status(200).json({
         message: "User disliked your tweet.",
@@ -50,7 +53,7 @@ export const likeOrDislike = async (req, res) => {
     } else {
       //like
       await Tweet.findByIdAndUpdate(tweetId, {
-        $push: { like: loggedInUserId },
+        $push: { like: loggedInUserId }
       });
       return res.status(200).json({
         message: "User liked your tweet.",
@@ -88,7 +91,7 @@ export const getFollowingTweets = async(req,res)=>{
       })
     );
     return res.status(200).json({
-      tweets: [].concat(...followingUserTweet),
+      tweets: [].concat(...followingUserTweet)
     });
 
   }catch(error){

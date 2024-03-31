@@ -21,7 +21,7 @@ const Login = () => {
         try{
           const res = await axios.post(`${USER_API_END_POINT}/login`,{email,password},{
             headers:{
-              'Content-Type':"application/json"
+              'Content-Type':'application/json'
             },
             withCredentials:true
           });
@@ -33,7 +33,7 @@ const Login = () => {
 
         }
         catch(error){
-          toast.success(error.response.data.message);
+          toast.success(error?.response?.data?.message);
           console.log(error);
         }
 
@@ -43,19 +43,19 @@ const Login = () => {
         try{
           const res = await axios.post(`${USER_API_END_POINT}/register`,{name,username,email,password},{
             headers:{
-              'Content-Type':"application/json"
+              'Content-Type':'application/json'
             },
             withCredentials:true
           });
-          if(res.data.success){
+          if(res?.data?.success){
             setIsLogin(true);
-            toast.success(res.data.message);
+            toast.success(res?.data?.message);
           }
-          console.log("response of registration",res);
+        
 
         }
         catch(error){
-          toast.success(error.response.data.message);
+          toast.success(error?.response?.data?.message);
           console.log(error);
         }
        }
@@ -96,7 +96,7 @@ const Login = () => {
                 <input type='password' value={password} onChange={(e) => setPassword(e.target.value)} placeholder='Password' className='outline-blue-500 border border-gray-800 px-3 py-1 rounded-full my-1 font-semibold' />
                 
                 
-                <button onClick={loginHandler} className='border-none py-2 my-4 rounded-full text-lg text-white bg-[#1DA1F2]' >{isLogin ? "Login" : "Create Account"} </button>
+                <button  className='border-none py-2 my-4 rounded-full text-lg text-white bg-[#1DA1F2]' >{isLogin ? "Login" : "Create Account"} </button>
                <h1> {isLogin ? "Do not have an account?" : " Already have an account ? " } <span onClick={loginHandler} className='font-bold text-blue-600 cursor-pointer'>{isLogin?" SignUp ":" Login "}</span></h1>
             </form>
         </div>

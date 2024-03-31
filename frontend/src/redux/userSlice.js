@@ -5,7 +5,7 @@ name:"user",
 initialState:{
     user:null,
     otherUsers:null,
-    profile:null,
+    profile:null
 },
 reducers:{
     getUser:(state,action)=>{
